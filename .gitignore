@@ -1,6 +1,6 @@
 #Redundant folder
 src/.vs/*
-assets/json-data/*
+
 
 # Roslyn cache directories
 *.ide/
