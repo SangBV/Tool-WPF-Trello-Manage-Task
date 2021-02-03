@@ -99,10 +99,12 @@ namespace SupportTool.Services
 
             if (!string.IsNullOrEmpty(cardTemplate.IdList))
             {
+                var maxPosInList = listCardViewModel.Cards.Where(x => x.ListName == TRELLO_CONSTANT.ListName.NextTodo).OrderByDescending(x => x.Pos).FirstOrDefault()?.Pos;
+
                 var card = new Card
                 {
                     Name = model.Name,
-                    Pos = 0,
+                    Pos = maxPosInList != null && maxPosInList.HasValue ? maxPosInList.Value : 0,
                     IdBoard = paramModel.TrelloBoardId,
                     IdList = cardTemplate.IdList,
                     IdLabels = cardTemplate.IdLabels
@@ -297,11 +299,6 @@ namespace SupportTool.Services
             {
                 foreach (var card in listCardViewModel.Cards)
                 {
-                    if(card.Name == "#No.203 | Follow task AA")
-                    {
-                        var a = 1;
-                    }
-
                     card.ListName = trelloList.FirstOrDefault(x => x.Id == card.IdList)?.Name;
 
                     if (card.IdLabels != null && card.IdLabels.Count() > 0)
