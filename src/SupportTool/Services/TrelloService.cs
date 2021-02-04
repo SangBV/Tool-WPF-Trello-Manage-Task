@@ -104,7 +104,7 @@ namespace SupportTool.Services
                 var card = new Card
                 {
                     Name = model.Name,
-                    Pos = maxPosInList != null && maxPosInList.HasValue ? maxPosInList.Value : 0,
+                    Pos = maxPosInList != null && maxPosInList.HasValue ? maxPosInList.Value + 1 : 0,
                     IdBoard = paramModel.TrelloBoardId,
                     IdList = cardTemplate.IdList,
                     IdLabels = cardTemplate.IdLabels
